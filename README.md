@@ -1,6 +1,26 @@
 # goorhm
 inspired by dc19 on public ebs, this program will check if your assets are exposed
 
+## Setup
+### Windows (PS)
+```
+> mkdir goorhm
+> cd goorhm
+> python3 -m venv venv
+> .\venv\Scripts\activate
+> pip install -r requirements.txt
+
+```
+
+### Linux (Ubuntu) / MacOS
+```
+> mkdir goorhm
+> cd goorhm
+> python3 -m venv venv
+> source ./venv/bin/activate
+> pip install -r requirements.txt
+```
+
 ## Usage
 ```
 > python main.py -h

@@ -24,7 +24,7 @@ def login_check(region):
 
 if __name__ == '__main__':
     # add args
-    parser = argparse.ArgumentParser(description="usage: based on specified region,\
+    parser = argparse.ArgumentParser(description="Based on specified region,\
         the program will return a list of public EBS in json", \
             epilog="python ")
     parser.add_argument("-r", "--region", required=True, type=str, \
