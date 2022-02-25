@@ -8,9 +8,21 @@ import botocore
 import os
 import sys
 
-client = boto3.client('sts', region_name='us-east-1')
 
-try:
-    account_info = client.get_caller_identity().get('Arn')
-except botocore.exceptions.ClientError as error:
-    sys.exit("couldn't retrieve account info")
+def login_check(call, REGION_NAME='us-east-1'):
+    call='sts'
+    sess = boto3.Session()
+    client = boto3.client(call, region_name=REGION_NAME)
+
+    try:
+        arn = client.get_caller_identity()['Arn']
+        return(arn)
+    except botocore.exceptions.ClientError as error:
+        sys.exit("couldn't retrieve account info")
+
+def main():
+    login_check()
+    return
+
+if __name__ == '__main__':
+    main()
