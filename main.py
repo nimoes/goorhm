@@ -3,6 +3,7 @@
 aws boto play
 """
 
+
 import boto3
 import botocore
 import os
@@ -12,14 +13,30 @@ def printResults(snapshots):
     count = 0
     for s in snapshots:
         count += 1
-        print(f'Snapshots id {s.id} for volume {s.volume_id} encrypted: {s.encrypted}')
+        print(f'Snapshots id {s.id} for volume {s.volume_id} encrypted: {s.encrypted} owner id: {s.owner_id} volume size: {s.volume_size}')
 
     print(count)
 
-ec2 = boto3.resource('ec2', region_name='us-east-1')
-snapshots = ec2.snapshots.limit(10)
+client = boto3.client('sts', region_name='us-east-1')
+account_info = client.get_caller_identity()['Account']
 
-onlyEncrypted = snapshots.filter(Filters=[{'Name':'encrypted', 'Values':['true']}])
+
+ec2 = boto3.resource('ec2', region_name='us-east-1')
+
+print(account_info)
+print(type(account_info))
+
+
+onlyEncrypted = ec2.snapshots.limit(count=100).filter(
+    Filters = [
+        {
+            'Name':'encrypted',
+            'Values':['12345']
+        }
+    ]
+)
 printResults(onlyEncrypted)
+
+
 
 
