@@ -27,15 +27,18 @@ print(account_info)
 print(type(account_info))
 
 
-onlyEncrypted = ec2.snapshots.limit(count=100).filter(
-    Filters = [
-        {
-            'Name':'encrypted',
-            'Values':['12345']
-        }
-    ]
-)
-printResults(onlyEncrypted)
+snapshots = ec2.snapshots.all().filter(
+       
+        Filters = [
+            {
+                #owner_id doesnt work but owner-id
+                'Name': 'owner-id',
+                'Values': [account_info],
+            },
+
+        ],
+    )
+printResults(snapshots)
 
 
 
