@@ -13,7 +13,7 @@ def printResults(snapshots):
     count = 0
     for s in snapshots:
         count += 1
-        print(f'Snapshots id {s.id} for volume {s.volume_id} encrypted: {s.encrypted} owner id: {s.owner_id} volume size: {s.volume_size}')
+        print(f'Snapshots id {s.id} for volume {s.volume_id} encrypted: {s.encrypted} owner id: {s.owner_id} volume size: {s.volume_size} description: {s.description}')
 
     print(count)
 
