@@ -8,15 +8,18 @@ import botocore
 import os
 import sys
 
+def printResults(snapshots):
+    count = 0
+    for s in snapshots:
+        count += 1
+        print(f'Snapshots id {s.id} for volume {s.volume_id} encrypted: {s.encrypted}')
+
+    print(count)
 
 ec2 = boto3.resource('ec2', region_name='us-east-1')
+snapshots = ec2.snapshots.limit(10)
 
-snapshots = ec2.snapshots.all()
+onlyEncrypted = snapshots.filter(Filters=[{'Name':'encrypted', 'Values':['true']}])
+printResults(onlyEncrypted)
 
-count = 0
-for s in snapshots:
-    count += 1
-    print(f'Snapshot {s.id} for volume {s.volume_id}')
-
-print(count)
 
