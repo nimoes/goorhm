@@ -21,8 +21,8 @@ inspired by dc19 on public ebs, this program will check if your assets are expos
 
 ## Usage
 ```
-> python main.py -h
-usage: main.py [-h] -r REGION [--preview]
+> python ebspose.py -h
+usage: ebspose.py [-h] -r REGION [--preview]
 
 Based on specified region, the program will return a list of public EBS in json
 
@@ -36,7 +36,7 @@ optional arguments:
 ```
 
 ```
-> python main.py -r "us-east-1" -o myoutput --preview
+> python ebspose.py -r "us-east-1" -o myoutput --preview
 
 2022-02-26 17:22:38,468 - EBS Snapshots Enumerator - INFO - Your current profile:       arn:aws:iam::621121731539:user/dev-boto3
 2022-02-26 17:22:38,470 - EBS Snapshots Enumerator - INFO - Checking for your vulnerable EBS snapshots...
